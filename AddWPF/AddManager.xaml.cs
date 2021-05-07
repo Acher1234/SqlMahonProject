@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,32 +15,45 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for AddHotel.xaml
+    /// Interaction logic for AddManager.xaml
     /// </summary>
-    public partial class AddHotel : Window
+    public partial class AddManager : Window
     {
-        public string name { get; set; }
-        public string city { get; set; }
-        public string address { get; set; }
-        public int number { get; set; }
-
-        public AddHotel()
+        private List<string> idHotel;
+        public int id  { get; set; }
+        public int yearOfWork { get; set; }
+        public AddManager()
         {
+            try
+            {
+                idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "error");
+                this.Close();
+            }
+
             InitializeComponent();
-            this.DataContext = this;
             FillDataGrid();
+            this.DataContext = this;
+            CBID.ItemsSource = idHotel;
+            CBID.SelectedIndex = 0;
+
         }
+
+
         private void FillDataGrid()
         {
- 
+
             string connectionString;
-            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT="+ variableConnect.port + ";" + "DATABASE=" +
+            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
             variableConnect.database + ";" + "UID=" + variableConnect.uid + ";" + "PASSWORD=" + variableConnect.password + ";";
             string CmdString = string.Empty;
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM hotel";
+                CmdString = "SELECT * FROM manager";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -51,12 +63,12 @@ namespace SqlMahonProject.AddWPF
             }
             catch (Exception e)
             {
-                  MessageBox.Show(e.Message,"alert",MessageBoxButton.OKCancel);
-                  this.Close();
+                MessageBox.Show(e.Message, "alert", MessageBoxButton.OKCancel);
+                this.Close();
             }
         }
 
-        private void AddHotelSql(object sender, RoutedEventArgs e)
+        private void AddManagerSql(object sender, RoutedEventArgs e)
         {
             string connectionString;
             connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
@@ -67,11 +79,10 @@ namespace SqlMahonProject.AddWPF
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `hotel`(`Name`, `Number`, `Town`, `Street`) VALUES (@name,@number,@Town,@street)";
-                comm.Parameters.AddWithValue("@name", name);
-                comm.Parameters.AddWithValue("@number", number);
-                comm.Parameters.AddWithValue("@Town", city);
-                comm.Parameters.AddWithValue("@street", address);
+                comm.CommandText = "INSERT INTO `manager`(`Id`, `yearOfWork`, `idHotel`) VALUES (@id,@yOW,@idHotel)";
+                comm.Parameters.AddWithValue("@id", id);
+                comm.Parameters.AddWithValue("@yOW", yearOfWork);
+                comm.Parameters.AddWithValue("@idHotel", CBID.SelectedValue.ToString());
                 comm.ExecuteNonQuery();
                 con.Close();
             }
@@ -82,5 +93,7 @@ namespace SqlMahonProject.AddWPF
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
         }
+
     }
+
 }

@@ -20,7 +20,8 @@ namespace SqlMahonProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<string> AddTable = new List<string> { "Hotel", "Rooms", "Link", "test" };
+        Window a;
+        List<string> AddTable = new List<string> { "Hotel","Manager", "Cleaner", "Rooms", "Link", "Personn" };
         public MainWindow()
         {
             InitializeComponent();
@@ -31,9 +32,33 @@ namespace SqlMahonProject
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(ListBoxAddItem.SelectedItem.ToString() == "Hotel")
+            if (ListBoxAddItem.SelectedItem.ToString() == "Hotel")
             {
-                Window a = new AddWPF.AddHotel();
+                a = new AddWPF.AddHotel();
+                a.Show();
+                a.Closed += WidowsClosed;
+            }
+            else if (ListBoxAddItem.SelectedItem.ToString() == "Manager")
+            {
+                a = new AddWPF.AddManager();
+                a.Show();
+                a.Closed += WidowsClosed;
+            }
+            else if (ListBoxAddItem.SelectedItem.ToString() == "Cleaner")
+            {
+                a = new AddWPF.Cleaner();
+                a.Show();
+                a.Closed += WidowsClosed;
+            }
+            else if (ListBoxAddItem.SelectedItem.ToString() == "Rooms")
+            {
+                a = new AddWPF.Rooms();
+                a.Show();
+                a.Closed += WidowsClosed;
+            }
+            else if (ListBoxAddItem.SelectedItem.ToString() == "Personn")
+            {
+                a = new AddWPF.Personn();
                 a.Show();
                 a.Closed += WidowsClosed;
             }

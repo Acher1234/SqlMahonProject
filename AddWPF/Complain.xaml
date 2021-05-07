@@ -1,0 +1,14 @@
+﻿<Window x:Class="SqlMahonProject.AddWPF.Complain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
+        mc:Ignorable="d"
+        Title="Complain" Height="450" Width="800">
+    <Grid>
+        <ComboBox Name="CBIDClient"  HorizontalAlignment="Left" Margin="86,32,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="CBIDRoom"  HorizontalAlignment="Left" Margin="77,104,0,0" VerticalAlignment="Top" Width="120" />
+        <DataGrid Name="dataGrid" Margin="241,10,0,0"/>
+    </Grid>
+</Window>

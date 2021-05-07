@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,32 +15,63 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for AddHotel.xaml
+    /// Interaction logic for Rooms.xaml
     /// </summary>
-    public partial class AddHotel : Window
+    public partial class Rooms : Window
     {
-        public string name { get; set; }
-        public string city { get; set; }
-        public string address { get; set; }
-        public int number { get; set; }
+        private List<string> idHotel { get; set; }
+        private List<string> idCleaner { get; set; }
+        public int numberOfRoom { get; set; }
 
-        public AddHotel()
+        public int FloorOfTheRoom { get; set; }
+
+        public int numberOfPersonn { get; set; }
+
+
+        public Rooms()
         {
+            try
+            {
+                idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "error");
+                this.Close();
+            }
+
             InitializeComponent();
             this.DataContext = this;
             FillDataGrid();
+            CBIDHotel.ItemsSource = idHotel;
+            CBIDHotel.SelectionChanged += ReturnCleaner;
         }
+
+        private void ReturnCleaner(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                idCleaner = UtilsFunction.StaticMySQLFunction.GetCleanerID(CBIDHotel.SelectedItem.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "error");
+                this.Close();
+            }
+            CBIDCleaner.ItemsSource = idCleaner;
+        }
+
         private void FillDataGrid()
         {
- 
+
             string connectionString;
-            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT="+ variableConnect.port + ";" + "DATABASE=" +
+            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
             variableConnect.database + ";" + "UID=" + variableConnect.uid + ";" + "PASSWORD=" + variableConnect.password + ";";
             string CmdString = string.Empty;
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM hotel";
+                CmdString = "SELECT * FROM room";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -51,12 +81,12 @@ namespace SqlMahonProject.AddWPF
             }
             catch (Exception e)
             {
-                  MessageBox.Show(e.Message,"alert",MessageBoxButton.OKCancel);
-                  this.Close();
+                MessageBox.Show(e.Message, "alert", MessageBoxButton.OKCancel);
+                this.Close();
             }
         }
 
-        private void AddHotelSql(object sender, RoutedEventArgs e)
+        private void AddRoomSql(object sender, RoutedEventArgs e)
         {
             string connectionString;
             connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
@@ -67,11 +97,12 @@ namespace SqlMahonProject.AddWPF
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `hotel`(`Name`, `Number`, `Town`, `Street`) VALUES (@name,@number,@Town,@street)";
-                comm.Parameters.AddWithValue("@name", name);
-                comm.Parameters.AddWithValue("@number", number);
-                comm.Parameters.AddWithValue("@Town", city);
-                comm.Parameters.AddWithValue("@street", address);
+                comm.CommandText = "INSERT INTO `room`(`NumberRoom`, `floor`, `maxNumberOfPersonne`, `CleanerId`, `idHotel`) VALUES (@NUR,@floor,@Max,@cleaner,@IdHotel)";
+                comm.Parameters.AddWithValue("@NUR", numberOfRoom);
+                comm.Parameters.AddWithValue("@floor", FloorOfTheRoom);
+                comm.Parameters.AddWithValue("@Max", numberOfPersonn);
+                comm.Parameters.AddWithValue("@cleaner", Int32.Parse(CBIDCleaner.SelectedValue.ToString()));
+                comm.Parameters.AddWithValue("@IdHotel", Int32.Parse(CBIDHotel.SelectedValue.ToString()));
                 comm.ExecuteNonQuery();
                 con.Close();
             }
@@ -82,5 +113,7 @@ namespace SqlMahonProject.AddWPF
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
         }
+
     }
+    
 }
