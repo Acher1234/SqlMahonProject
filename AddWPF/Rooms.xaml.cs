@@ -52,6 +52,7 @@ namespace SqlMahonProject.AddWPF
             try
             {
                 idCleaner = UtilsFunction.StaticMySQLFunction.GetCleanerID(CBIDHotel.SelectedItem.ToString());
+                removeID.ItemsSource = UtilsFunction.StaticMySQLFunction.GetRoomID(CBIDHotel.SelectedItem.ToString());
             }
             catch (Exception ex)
             {
@@ -112,6 +113,32 @@ namespace SqlMahonProject.AddWPF
                 return;
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
+            FillDataGrid();
+        }
+
+        private void remove(object sender, RoutedEventArgs e)
+        {
+            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    UtilsFunction.RemoveFunction.removeroomID(removeID.SelectedItem.ToString(), CBIDHotel.SelectedValue.ToString());
+                    FillDataGrid();
+                    idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
+                    CBIDHotel.ItemsSource = idHotel;
+                    CBIDHotel.SelectionChanged += ReturnCleaner;
+                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
+                }
+            }
+
         }
 
     }

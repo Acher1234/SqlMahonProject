@@ -13,5 +13,8 @@
         <TextBox HorizontalAlignment="Left" Margin="117,179,0,0" Text="{Binding Path=id,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="117,222,0,0" Text="{Binding Path=yearsOfWork,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="147,304,0,0" VerticalAlignment="Top" Click="AddCleanerSql"/>
+        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>

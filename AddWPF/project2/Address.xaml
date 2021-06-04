@@ -1,0 +1,29 @@
+﻿<Window x:Class="SqlMahonProject.AddWPF.Address"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Address" Height="450" Width="800">
+
+    <Grid>
+
+        <DataGrid Name="dataGrid" Margin="241,10,0,0"/>
+        <Label Content="id" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="City" HorizontalAlignment="Left" Margin="21,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="31"/>
+        <Label Content="Street" HorizontalAlignment="Left" Margin="25,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
+        <Label Content="Number Of Building" HorizontalAlignment="Left" Margin="25,205,0,0" VerticalAlignment="Top"/>
+        <Label Content="Entry" HorizontalAlignment="Left" Margin="25,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.229,1.504"/>
+        <Button Click="Button_Click" Content="Button"  HorizontalAlignment="Left" Margin="102,295,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="idPersonn" HorizontalAlignment="Left" Margin="102,70,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="102,115,0,0" Text="{Binding Path=city,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="102,173,0,0" Text="{Binding Path=street,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="162,0,0,0" Text="{Binding Path=number,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Center" Width="74" Height="28"/>
+        <TextBox HorizontalAlignment="Left" Margin="102,248,0,0" Text="{Binding Path=entry,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="28"/>
+        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>
+    

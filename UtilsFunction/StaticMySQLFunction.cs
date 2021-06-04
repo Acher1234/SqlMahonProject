@@ -133,7 +133,7 @@ namespace SqlMahonProject.UtilsFunction
 
 
 
-        public static string GetClientID(string id)
+        public static string GetPersontID(string id)
         {
             string res;
             string connectionString;
@@ -144,10 +144,11 @@ namespace SqlMahonProject.UtilsFunction
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
-                CmdString = "SELECT idHotel  FROM client where id=" + id;
+                CmdString = "SELECT idHotel  FROM persons where id=" + id;
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataReader myReader;
                 myReader = cmd.ExecuteReader();
+                myReader.Read();
                 res =  myReader.GetInt32(0).ToString();
                 con.Close();
             }
@@ -158,9 +159,9 @@ namespace SqlMahonProject.UtilsFunction
             return res;
         }
 
-        public static List<string> GetHotelIDFromClient(string idClient)
+        public static List<string> GetPersontID()
         {
-            List<String> id = new List<string>();
+            List<string> res = new List<string>();
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -169,13 +170,13 @@ namespace SqlMahonProject.UtilsFunction
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
-                CmdString = "SELECT id FROM client ";
+                CmdString = "SELECT id  FROM persons";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataReader myReader;
                 myReader = cmd.ExecuteReader();
                 while (myReader.Read())
                 {
-                    id.Add(myReader.GetInt32(0).ToString());
+                    res.Add(myReader.GetInt32(0).ToString());
                 }
                 con.Close();
             }
@@ -183,7 +184,90 @@ namespace SqlMahonProject.UtilsFunction
             {
                 throw e;
             }
+            return res;
+        }
+
+        public static List<string> GetVisitorID()
+        {
+            List<string> res = new List<string>();
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            string CmdString = string.Empty;
+            try
+            {
+                MySqlConnection con = new MySqlConnection(connectionString);
+                con.Open();
+                CmdString = "SELECT id  FROM visitors";
+                MySqlCommand cmd = new MySqlCommand(CmdString, con);
+                MySqlDataReader myReader;
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    res.Add(myReader.GetInt32(0).ToString());
+                }
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return res;
+        }
+
+
+        public static string GetHotelIDFromClient(string idClient)
+        {
+            String id;
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            string CmdString = string.Empty;
+            try
+            {
+                MySqlConnection con = new MySqlConnection(connectionString);
+                con.Open();
+                CmdString = "SELECT idHotel FROM persons where ID=\'" + idClient+'\'';
+                MySqlCommand cmd = new MySqlCommand(CmdString, con);
+                MySqlDataReader myReader;
+                myReader = cmd.ExecuteReader();
+                myReader.Read();
+                id = myReader.GetInt32(0).ToString();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             return id;
+        }
+
+        public static List<string> GetIDFamilly()
+        {
+            List<string> res = new List<string>();
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
+            database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            string CmdString = string.Empty;
+            try
+            {
+                MySqlConnection con = new MySqlConnection(connectionString);
+                con.Open();
+                CmdString = "SELECT IdFamily FROM id_family";
+                MySqlCommand cmd = new MySqlCommand(CmdString, con);
+                MySqlDataReader myReader;
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    res.Add(myReader.GetInt32(0).ToString());
+                }
+                con.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return res;
         }
 
 

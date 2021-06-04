@@ -46,6 +46,7 @@ namespace SqlMahonProject.AddWPF
             dateexit = DateTime.Now;
             this.DataContext = this;
             FillDataGrid();
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetpersonnID();
             CBIDHotel.ItemsSource = idHotel;
             CBIDHotel.SelectionChanged += ReturnRoom;
         }
@@ -118,8 +119,36 @@ namespace SqlMahonProject.AddWPF
                 return;
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
+            FillDataGrid();
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetpersonnID();
         }
+        private void remove(object sender, RoutedEventArgs e)
+        {
+            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    UtilsFunction.RemoveFunction.removepersonnID(removeID.SelectedItem.ToString());
+                    idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
+                    dateentry = DateTime.Now;
+                    dateexit = DateTime.Now;
+                    FillDataGrid();
+                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetpersonnID();
+                    CBIDHotel.ItemsSource = idHotel;
+                    CBIDHotel.SelectionChanged += ReturnRoom;
+                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
+                }
+            }
 
+        }
 
     }
 }

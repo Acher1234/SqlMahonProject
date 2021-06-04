@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,33 +15,57 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for AddHotel.xaml
+    /// Interaction logic for receiveVaccin.xaml
     /// </summary>
-    public partial class AddHotel : Window
+    public partial class receiveVaccin : Window
     {
-        public string name { get; set; }
-        public string city { get; set; }
-        public string address { get; set; }
-        public int number { get; set; }
 
-        public AddHotel()
+        List<string> personneId { get; set; }
+        public receiveVaccin()
         {
             InitializeComponent();
-            this.DataContext = this;
             FillDataGrid();
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetHotelID();
+            personneId = UtilsFunction.StaticMySQLFunction.GetVisitorID();
+            idPersonne.ItemsSource = personneId;
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetrvID();
         }
+
+        private void remove(object sender, RoutedEventArgs e)
+        {
+            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    UtilsFunction.RemoveFunction.removereceiveVaccinID(removeID.SelectedItem.ToString());
+                    FillDataGrid();
+                    personneId = UtilsFunction.StaticMySQLFunction.GetVisitorID();
+                    idPersonne.ItemsSource = personneId;
+                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetrvID();
+                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
+                }
+            }
+
+        }
+
         private void FillDataGrid()
         {
- 
+
             string connectionString;
-            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT="+ variableConnect.port + ";" + "DATABASE=" +
+            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
             variableConnect.database + ";" + "UID=" + variableConnect.uid + ";" + "PASSWORD=" + variableConnect.password + ";";
             string CmdString = string.Empty;
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM hotel";
+                CmdString = "SELECT * FROM receive_vaccin";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -52,12 +75,12 @@ namespace SqlMahonProject.AddWPF
             }
             catch (Exception e)
             {
-                  MessageBox.Show(e.Message,"alert",MessageBoxButton.OKCancel);
-                  this.Close();
+                MessageBox.Show(e.Message, "alert", MessageBoxButton.OKCancel);
+                this.Close();
             }
         }
 
-        private void AddHotelSql(object sender, RoutedEventArgs e)
+        private void AddreceiveSql(object sender, RoutedEventArgs e)
         {
             string connectionString;
             connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
@@ -68,11 +91,8 @@ namespace SqlMahonProject.AddWPF
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `hotel`(`Name`, `Number`, `Town`, `Street`) VALUES (@name,@number,@Town,@street)";
-                comm.Parameters.AddWithValue("@name", name);
-                comm.Parameters.AddWithValue("@number", number);
-                comm.Parameters.AddWithValue("@Town", city);
-                comm.Parameters.AddWithValue("@street", address);
+                comm.CommandText = "INSERT INTO `receive_vaccin`(`Id`) VALUES (@id)";
+                comm.Parameters.AddWithValue("@id", idPersonne.SelectedValue.ToString());
                 comm.ExecuteNonQuery();
                 con.Close();
             }
@@ -82,30 +102,9 @@ namespace SqlMahonProject.AddWPF
                 return;
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetHotelID();
             FillDataGrid();
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetrvID();
         }
 
-        private void remove(object sender, RoutedEventArgs e)
-        {
-            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
-            {
-                return;
-            }
-            else 
-            {
-                try
-                {
-                    UtilsFunction.RemoveFunction.removeHotelID(removeID.SelectedItem.ToString());
-                    FillDataGrid();
-                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetHotelID();
-                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
-                }
-            }
-        }
     }
 }

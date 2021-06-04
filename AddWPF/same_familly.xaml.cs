@@ -15,35 +15,53 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for AddManager.xaml
+    /// Interaction logic for same_familly.xaml
     /// </summary>
-    public partial class AddManager : Window
+    public partial class same_familly : Window
     {
-        private List<string> idHotel;
-        public int id  { get; set; }
-        public int yearOfWork { get; set; }
-        public AddManager()
+
+        public List<string> idPersonnList { get; set; }
+        public List<string> idFamillyList { get; set; }
+        public same_familly()
         {
-            try
-            {
-                idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.Message, "error");
-                this.Close();
-            }
+            idPersonnList = UtilsFunction.StaticMySQLFunction.GetPersontID();
+
+            idFamillyList = UtilsFunction.StaticMySQLFunction.GetIDFamilly();
 
             InitializeComponent();
             FillDataGrid();
-            this.DataContext = this;
-            CBID.ItemsSource = idHotel;
-            CBID.SelectedIndex = 0;
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetmanagerID();
 
+            idPersonn.ItemsSource = idPersonnList;
+            idFamilly.ItemsSource = idFamillyList;
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetSMID();
         }
 
+        private void remove(object sender, RoutedEventArgs e)
+        {
+            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    UtilsFunction.RemoveFunction.removeSamefamillyID(removeID.SelectedItem.ToString());
+                    idPersonnList = UtilsFunction.StaticMySQLFunction.GetPersontID();
+                    idFamillyList = UtilsFunction.StaticMySQLFunction.GetIDFamilly();
+                    FillDataGrid();
+                    idPersonn.ItemsSource = idPersonnList;
+                    idFamilly.ItemsSource = idFamillyList;
+                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetSMID();
+                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
+                }
+            }
 
+        }
         private void FillDataGrid()
         {
 
@@ -54,7 +72,7 @@ namespace SqlMahonProject.AddWPF
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM manager";
+                CmdString = "SELECT * FROM same_family";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -69,7 +87,7 @@ namespace SqlMahonProject.AddWPF
             }
         }
 
-        private void AddManagerSql(object sender, RoutedEventArgs e)
+        private void Addsame_familly_Sql(object sender, RoutedEventArgs e)
         {
             string connectionString;
             connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
@@ -80,10 +98,9 @@ namespace SqlMahonProject.AddWPF
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `manager`(`Id`, `yearOfWork`, `idHotel`) VALUES (@id,@yOW,@idHotel)";
-                comm.Parameters.AddWithValue("@id", id);
-                comm.Parameters.AddWithValue("@yOW", yearOfWork);
-                comm.Parameters.AddWithValue("@idHotel", CBID.SelectedValue.ToString());
+                comm.CommandText = "INSERT INTO `same_family`(`Id`, `idFamilly`) VALUES (@idPersone,@idFamilly)";
+                comm.Parameters.AddWithValue("@idPersone", idPersonn.SelectedValue);
+                comm.Parameters.AddWithValue("@idFamilly", idFamilly.SelectedValue);
                 comm.ExecuteNonQuery();
                 con.Close();
             }
@@ -93,34 +110,8 @@ namespace SqlMahonProject.AddWPF
                 return;
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetmanagerID();
             FillDataGrid();
-        }
-        private void remove(object sender, RoutedEventArgs e)
-        {
-            if (removeID.SelectedItem == null || removeID.SelectedItem.ToString() == "")
-            {
-                return;
-            }
-            else
-            {
-                try
-                {
-                    UtilsFunction.RemoveFunction.removemanagerID(removeID.SelectedItem.ToString());
-                    FillDataGrid();
-                    idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
-                    this.DataContext = this;
-                    CBID.ItemsSource = idHotel;
-                    CBID.SelectedIndex = 0;
-                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetmanagerID();
-                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
-                }
-            }
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetSMID();
         }
     }
-
 }

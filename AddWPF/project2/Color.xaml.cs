@@ -15,19 +15,65 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for Visitor.xaml
+    /// Logique d'interaction pour Color.xaml
     /// </summary>
-    public partial class Visitor : Window
+    public partial class Color : Window
     {
-
-        public int id  { get; set; }
-        public string nationality { get; set; }
-
-        public Visitor()
+        public int color { get; set; }
+        public Color()
         {
             InitializeComponent();
             this.DataContext = this;
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetVisitorID();
+            countryBox.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
+        }
+
+        private void remove(object sender, RoutedEventArgs e)
+        {
+            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    UtilsFunction.RemoveFunction.removecountry(removeID.SelectedItem.ToString());
+                    FillDataGrid();
+                    countryBox.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
+                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
+                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
+                }
+            }
+        }
+
+        private void AddcolorSql(object sender, RoutedEventArgs e)
+        {
+            string connectionString;
+            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
+            variableConnect.database + ";" + "UID=" + variableConnect.uid + ";" + "PASSWORD=" + variableConnect.password + ";";
+            string CmdString = string.Empty;
+            try
+            {
+                MySqlConnection con = new MySqlConnection(connectionString);
+                con.Open();
+                MySqlCommand comm = con.CreateCommand();
+                comm.CommandText = "INSERT INTO `color`(`Country`, `Dangerous`) VALUES (@country,@dan)";
+                comm.Parameters.AddWithValue("@country", countryBox.SelectedValue.ToString());
+                comm.Parameters.AddWithValue("@dan",color);
+                comm.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "alert", MessageBoxButton.OKCancel);
+                return;
+            }
+            MessageBox.Show("Success", "alert", MessageBoxButton.OK);
             FillDataGrid();
         }
 
@@ -41,7 +87,7 @@ namespace SqlMahonProject.AddWPF
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM Visitors";
+                CmdString = "SELECT * FROM color";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -55,56 +101,5 @@ namespace SqlMahonProject.AddWPF
                 this.Close();
             }
         }
-
-        private void remove(object sender, RoutedEventArgs e)
-        {
-            if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
-            {
-                return;
-            }
-            else
-            {
-                try
-                {
-                    UtilsFunction.RemoveFunction.removevisitorID(removeID.SelectedItem.ToString());
-                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetVisitorID();
-                    FillDataGrid();
-                    MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "alert", MessageBoxButton.OKCancel);
-                }
-            }
-        }
-
-        private void AddvisitorSql(object sender, RoutedEventArgs e)
-        {
-            string connectionString;
-            connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
-            variableConnect.database + ";" + "UID=" + variableConnect.uid + ";" + "PASSWORD=" + variableConnect.password + ";";
-            string CmdString = string.Empty;
-            try
-            {
-                MySqlConnection con = new MySqlConnection(connectionString);
-                con.Open();
-                MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `visitors`(`ID`, `Nationality`) VALUES (@id,@nationality)";
-                comm.Parameters.AddWithValue("@id", id);
-                comm.Parameters.AddWithValue("@nationality", nationality);
-                comm.ExecuteNonQuery();
-                con.Close();
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message, "alert", MessageBoxButton.OKCancel);
-                return;
-            }
-            MessageBox.Show("Success", "alert", MessageBoxButton.OK);
-            FillDataGrid();
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetVisitorID();
-        }
-
-
     }
 }

@@ -15,47 +15,15 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for Cleaner.xaml
+    /// Interaction logic for idFamilly.xaml
     /// </summary>
-    public partial class Cleaner : Window
+    public partial class idFamilly : Window
     {
-        private List<string> idHotel { get; set; }
-        private List<string> idManager { get; set; }
-        public int id { get; set; }
-
-        public int yearsOfWork { get; set; }
-        public Cleaner()
+        public idFamilly()
         {
-            try
-            {
-                idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "error");
-                this.Close();
-            }
-
             InitializeComponent();
-            this.DataContext = this;
             FillDataGrid();
-            CBIDHotel.ItemsSource = idHotel;
-            CBIDHotel.SelectionChanged += ReturnManager;
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcleanerID();
-        }
-
-        private void ReturnManager(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                idManager = UtilsFunction.StaticMySQLFunction.GetManagerID(CBIDHotel.SelectedItem.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error");
-                this.Close();
-            }
-            CBIDManager.ItemsSource = idManager;
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetFamillyID();
         }
 
         private void FillDataGrid()
@@ -68,7 +36,7 @@ namespace SqlMahonProject.AddWPF
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM cleaner";
+                CmdString = "SELECT * FROM id_family";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -83,7 +51,7 @@ namespace SqlMahonProject.AddWPF
             }
         }
 
-        private void AddCleanerSql(object sender, RoutedEventArgs e)
+        private void addIdFamily(object sender, RoutedEventArgs e)
         {
             string connectionString;
             connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
@@ -94,11 +62,7 @@ namespace SqlMahonProject.AddWPF
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `cleaner`(`Id`, `yearOfWork`, `ManagerId`, `idHotel`) VALUES (@id,@yOW,@ManagerId,@idHotel)";
-                comm.Parameters.AddWithValue("@id", id);
-                comm.Parameters.AddWithValue("@yOW", yearsOfWork);
-                comm.Parameters.AddWithValue("@ManagerId",  Int32.Parse(CBIDManager.SelectedValue.ToString()));
-                comm.Parameters.AddWithValue("@idHotel", Int32.Parse(CBIDHotel.SelectedValue.ToString()));
+                comm.CommandText = "INSERT INTO `id_family`() VALUES ()";
                 comm.ExecuteNonQuery();
                 con.Close();
             }
@@ -109,8 +73,9 @@ namespace SqlMahonProject.AddWPF
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
             FillDataGrid();
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcleanerID();
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetFamillyID();
         }
+
         private void remove(object sender, RoutedEventArgs e)
         {
             if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
@@ -121,12 +86,9 @@ namespace SqlMahonProject.AddWPF
             {
                 try
                 {
-                    UtilsFunction.RemoveFunction.removecleanerID(removeID.SelectedItem.ToString());
-                    idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
+                    UtilsFunction.RemoveFunction.removefamillyID(removeID.SelectedItem.ToString());
                     FillDataGrid();
-                    CBIDHotel.ItemsSource = idHotel;
-                    CBIDHotel.SelectionChanged += ReturnManager;
-                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcleanerID();
+                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetFamillyID();
                     MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
                 }
                 catch (Exception ex)
@@ -136,7 +98,5 @@ namespace SqlMahonProject.AddWPF
             }
 
         }
-
     }
 }
-

@@ -1,0 +1,26 @@
+﻿<Window x:Class="SqlMahonProject.AddWPF.Previous_Illnesses"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Previous_Illnesses" Height="450" Width="800">
+
+    <Grid>
+
+        <DataGrid Name="dataGrid" Margin="241,10,0,0"/>
+        <Label Content="id" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="Already Sick" HorizontalAlignment="Left" Margin="21,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="81"/>
+        <Label Content="Illness Name" HorizontalAlignment="Left" Margin="25,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
+        <Button Click="addillness" Content="Button"  HorizontalAlignment="Left" Margin="102,205,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="{Binding Path=check,Mode=TwoWay}"  Content="CheckBox" HorizontalAlignment="Left" Margin="122,121,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="id"  HorizontalAlignment="Left" Margin="73,80,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="121,160,0,0" Text="{Binding Path=ill,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
+

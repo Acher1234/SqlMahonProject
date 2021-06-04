@@ -1,17 +1,16 @@
-﻿<Window x:Class="SqlMahonProject.AddWPF.AddManager"
+﻿<Window x:Class="SqlMahonProject.AddWPF.receiveVaccin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
         mc:Ignorable="d"
-        Title="AddManager" Height="450" Width="800">
+        Title="receiveVaccin" Height="450" Width="800">
     <Grid>
         <DataGrid Name="dataGrid" Margin="400,0,0,0"/>
-        <ComboBox Name="CBID" HorizontalAlignment="Left" Margin="117,39,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="117,139,0,0" Text="{Binding Path=yearOfWork,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="117,90,0,0" Text="{Binding Path=id,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="166,232,0,0" VerticalAlignment="Top" Click="AddManagerSql"/>
+        <ComboBox Name="idPersonne" HorizontalAlignment="Left" Margin="218,59,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="idPersonne" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top"/>
+        <Button Click="AddreceiveSql" Content="Button" HorizontalAlignment="Left" Margin="218,136,0,0" VerticalAlignment="Top"/>
         <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 

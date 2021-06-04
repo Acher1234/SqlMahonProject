@@ -15,47 +15,28 @@ using System.Windows.Shapes;
 namespace SqlMahonProject.AddWPF
 {
     /// <summary>
-    /// Interaction logic for Cleaner.xaml
+    /// Interaction logic for Links.xaml
     /// </summary>
-    public partial class Cleaner : Window
+    public partial class Links : Window
     {
-        private List<string> idHotel { get; set; }
-        private List<string> idManager { get; set; }
-        public int id { get; set; }
-
-        public int yearsOfWork { get; set; }
-        public Cleaner()
+        List<string> idHotelList { get; set; }
+        List<string> idroomsList { get; set; }
+        public Links()
         {
-            try
-            {
-                idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "error");
-                this.Close();
-            }
-
+            idHotelList = UtilsFunction.StaticMySQLFunction.GetHotelID();
             InitializeComponent();
-            this.DataContext = this;
             FillDataGrid();
-            CBIDHotel.ItemsSource = idHotel;
-            CBIDHotel.SelectionChanged += ReturnManager;
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcleanerID();
+            idHotel.ItemsSource = idHotelList;
+            idHotel.SelectionChanged += IdHotel_SelectionChanged;
         }
 
-        private void ReturnManager(object sender, SelectionChangedEventArgs e)
+        private void IdHotel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                idManager = UtilsFunction.StaticMySQLFunction.GetManagerID(CBIDHotel.SelectedItem.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "error");
-                this.Close();
-            }
-            CBIDManager.ItemsSource = idManager;
+            idroomsList = UtilsFunction.StaticMySQLFunction.GetRoomID(idHotel.SelectedValue.ToString());
+            room1.ItemsSource = idroomsList;
+            room2.ItemsSource = idroomsList;
+            room3.ItemsSource = idroomsList;
+            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetLinksID(idHotel.SelectedValue.ToString());
         }
 
         private void FillDataGrid()
@@ -68,7 +49,7 @@ namespace SqlMahonProject.AddWPF
             try
             {
                 MySqlConnection con = new MySqlConnection(connectionString);
-                CmdString = "SELECT * FROM cleaner";
+                CmdString = "SELECT * FROM links";
                 MySqlCommand cmd = new MySqlCommand(CmdString, con);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
                 System.Data.DataTable dt = new DataTable("Hotel");
@@ -83,7 +64,7 @@ namespace SqlMahonProject.AddWPF
             }
         }
 
-        private void AddCleanerSql(object sender, RoutedEventArgs e)
+        private void AddreceiveSql(object sender, RoutedEventArgs e)
         {
             string connectionString;
             connectionString = "SERVER=" + variableConnect.server + ";" + "PORT=" + variableConnect.port + ";" + "DATABASE=" +
@@ -94,11 +75,11 @@ namespace SqlMahonProject.AddWPF
                 MySqlConnection con = new MySqlConnection(connectionString);
                 con.Open();
                 MySqlCommand comm = con.CreateCommand();
-                comm.CommandText = "INSERT INTO `cleaner`(`Id`, `yearOfWork`, `ManagerId`, `idHotel`) VALUES (@id,@yOW,@ManagerId,@idHotel)";
-                comm.Parameters.AddWithValue("@id", id);
-                comm.Parameters.AddWithValue("@yOW", yearsOfWork);
-                comm.Parameters.AddWithValue("@ManagerId",  Int32.Parse(CBIDManager.SelectedValue.ToString()));
-                comm.Parameters.AddWithValue("@idHotel", Int32.Parse(CBIDHotel.SelectedValue.ToString()));
+                comm.CommandText = "INSERT INTO `links`(`RoomsPrincipal`, `Rooms1`, `Rooms2`, `idHotel`) VALUES (@room1,@room2,@room3,@idhotel)";
+                comm.Parameters.AddWithValue("@idhotel", idHotel.SelectedValue.ToString());
+                comm.Parameters.AddWithValue("@room1", room1.SelectedValue.ToString());
+                comm.Parameters.AddWithValue("@room2", room2.SelectedValue.ToString());
+                comm.Parameters.AddWithValue("@room3", room3.SelectedValue.ToString());
                 comm.ExecuteNonQuery();
                 con.Close();
             }
@@ -109,8 +90,8 @@ namespace SqlMahonProject.AddWPF
             }
             MessageBox.Show("Success", "alert", MessageBoxButton.OK);
             FillDataGrid();
-            removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcleanerID();
         }
+
         private void remove(object sender, RoutedEventArgs e)
         {
             if (removeID.SelectedItem.ToString() == null || removeID.SelectedItem.ToString() == "")
@@ -121,12 +102,11 @@ namespace SqlMahonProject.AddWPF
             {
                 try
                 {
-                    UtilsFunction.RemoveFunction.removecleanerID(removeID.SelectedItem.ToString());
-                    idHotel = UtilsFunction.StaticMySQLFunction.GetHotelID();
+                    UtilsFunction.RemoveFunction.removeLinksID(removeID.SelectedItem.ToString(), idHotel.SelectedValue.ToString());
+                    idHotelList = UtilsFunction.StaticMySQLFunction.GetHotelID();
                     FillDataGrid();
-                    CBIDHotel.ItemsSource = idHotel;
-                    CBIDHotel.SelectionChanged += ReturnManager;
-                    removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcleanerID();
+                    idHotel.ItemsSource = idHotelList;
+                    idHotel.SelectionChanged += IdHotel_SelectionChanged;
                     MessageBox.Show("success", "success", MessageBoxButton.OKCancel);
                 }
                 catch (Exception ex)
