@@ -23,6 +23,7 @@ namespace SqlMahonProject
         int selected = 0;
         Dictionary<string, int> dicttoid = new Dictionary<string, int>();
         Dictionary<int,string> idtocomand = new Dictionary<int, string>();
+        Dictionary<string, string> view = new Dictionary<string, string>();
 
         public seeRequest()
         {
@@ -38,7 +39,8 @@ namespace SqlMahonProject
             FillDataGrid();
         }
 
-        public void addRequest()
+
+            public void addRequest()
         {
             dicttoid.Add("linked room without same family", i);
             idtocomand.Add(i++, "Select id from Persons where Persons.ID not in (SELECT id from Same_family) AND Persons.Rooms in (SELECT Links.RoomsPrincipal from Links UNION SELECT Links.Rooms1 from Links Union SELECT Links.Rooms2 from Links)");
@@ -53,9 +55,23 @@ namespace SqlMahonProject
             dicttoid.Add("max receive complain employee", i);
             idtocomand.Add(i++, "SELECT count(Complaint.complaint),Cleaner.Id from Persons,Complaint,Cleaner,Room WHERE Persons.ID = Complaint.ClientID and Persons.Rooms = Room.NumberRoom and Cleaner.Id = Room.CleanerId and Persons.idHotel=Room.idHotel GROUP by Cleaner.Id");
             dicttoid.Add("average complain", i);
-            idtocomand.Add(i++, "SELECT Room.idHotel,COUNT(Complaint)/COUNT(Persons.ID) FROM Persons LEFT JOIN Complaint ON Persons.ID = Complaint.ClientID JOIN Room ON Persons.Rooms = Room.NumberRoom AND Persons.idHotel = Room.idHotel GROUP BY Room.idHotel");
+            idtocomand.Add(i++, "SELECT Room.idHotel,CEILING((COUNT(Complaint)/COUNT(Persons.ID)*100)) FROM Persons LEFT JOIN Complaint ON Persons.ID = Complaint.ClientID JOIN Room ON Persons.Rooms = Room.NumberRoom AND Persons.idHotel = Room.idHotel GROUP BY Room.idHotel");
             dicttoid.Add("number complain by room", i);
             idtocomand.Add(i++, "SELECT count(DISTINCT Complaint.ClientID),Room.NumberRoom from Persons,Complaint,Cleaner,Room WHERE Persons.ID = Complaint.ClientID and Persons.Rooms = Room.NumberRoom and Cleaner.Id = Room.CleanerId and Persons.idHotel=Room.idHotel GROUP by Room.NumberRoom");
+            dicttoid.Add("same familly come from red country", i);
+            idtocomand.Add(i++, "SELECT previous_illnesses.Illness_name,same_family.idFamilly from previous_illnesses,persons,same_family,stayed_in_foreign_country,color where persons.ID in (SELECT id from same_family)and persons.id = same_family.Id and persons.ID = previous_illnesses.ID and stayed_in_foreign_country.ID = persons.id and stayed_in_foreign_country.Country = color.Country and color.Dangerous = 'red' order by same_family.idFamilly");
+            dicttoid.Add("come from france and seek", i);
+            idtocomand.Add(i++, "SELECT personal_data.first_name,personal_data.last_name FROM visited_france_person NATURAL join personal_data NATURAL join previous_illnesses NATURAL JOIN stayed_in_foreign_country where stayed_in_foreign_country.Number_Days >= 14");
+            dicttoid.Add("from bayit vegan and can go from the hotel", i);
+            idtocomand.Add(i++, "select * from bayitveganhotel natural join stayed_in_foreign_country NATURAL join foreign_country NATURAL JOIN color where foreign_country.Vacination_Rate > 80 and color.Dangerous = 'green'");
+            dicttoid.Add("mail from plain person", i);
+            idtocomand.Add(i++, "SELECT personal_data.mail from bayitveganhotel join personal_data,complaint where personal_data.ID = complaint.ClientID");
+            dicttoid.Add("veiw dangerous hotel", i);
+            idtocomand.Add(i++, "Select * from dangeroushotel ");
+            dicttoid.Add("veiw bayitvegan hotel person data", i);
+            idtocomand.Add(i++, "Select * from bayitveganhotel  ");
+            dicttoid.Add("veiw person visited france", i);
+            idtocomand.Add(i++, "Select * from VISITED_France_PERSON  ");
 
 
         }

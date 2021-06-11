@@ -19,7 +19,7 @@ namespace SqlMahonProject.AddWPF
     /// </summary>
     public partial class Color : Window
     {
-        public int color { get; set; }
+        public string color { get; set; }
         public Color()
         {
             InitializeComponent();
