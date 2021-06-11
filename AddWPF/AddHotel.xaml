@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
         mc:Ignorable="d"
         Title="AddHotel" Height="450" Width="800">
-    <Grid>
+
+    <Grid >
+        <DataGrid Name="dataGrid" Margin="300,0,0,0" RenderTransformOrigin="0.5,0.5">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.757"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="2.644"/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+        </DataGrid>
         <Label Content="Name" HorizontalAlignment="Left" Margin="42,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.829,-0.114"/>
         <TextBox HorizontalAlignment="Left" Margin="131,62,0,0" Text="{Binding Path=name,UpdateSourceTrigger=Default,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="adress" HorizontalAlignment="Left" Margin="42,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.829,-0.114"/>
@@ -16,8 +27,7 @@
         <Label Content="City" HorizontalAlignment="Left" Margin="42,191,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.829,-0.114"/>
         <TextBox HorizontalAlignment="Left" Margin="133,195,0,0" Text="{Binding Path=city,UpdateSourceTrigger=Default,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Add" HorizontalAlignment="Left" Click="AddHotelSql" Margin="166,319,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.82,-1.376"/>
-        <DataGrid Name="dataGrid" Margin="301,10,0,0"/>
-		<Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+        <Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>

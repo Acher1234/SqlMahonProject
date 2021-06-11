@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="109,49,0,0" VerticalAlignment="Top" Height="35" Width="88" Click="Button_Click"/>
+        <Button Content="Enter" HorizontalAlignment="Left" Margin="109,49,0,0" VerticalAlignment="Top" Height="35" Width="88" Click="Button_Click"/>
         <ComboBox Name="ListBoxAddItem" Margin="400,36,85,337" />
-        <Button Click="seeRequestWindow" Content="Button" HorizontalAlignment="Left" Margin="326,217,0,0" VerticalAlignment="Top"/>
+        <Button Click="seeRequestWindow" Content="List of Request" HorizontalAlignment="Left" Margin="326,217,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

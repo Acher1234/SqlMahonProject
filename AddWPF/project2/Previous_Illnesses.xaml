@@ -14,12 +14,12 @@
         <Label Content="id" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top"/>
         <Label Content="Already Sick" HorizontalAlignment="Left" Margin="21,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="81"/>
         <Label Content="Illness Name" HorizontalAlignment="Left" Margin="25,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
-        <Button Click="addillness" Content="Button"  HorizontalAlignment="Left" Margin="102,205,0,0" VerticalAlignment="Top"/>
+        <Button Click="addillness" Content="Add"  HorizontalAlignment="Left" Margin="102,205,0,0" VerticalAlignment="Top"/>
         <CheckBox IsChecked="{Binding Path=check,Mode=TwoWay}"  Content="CheckBox" HorizontalAlignment="Left" Margin="122,121,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="id"  HorizontalAlignment="Left" Margin="73,80,0,0" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="121,160,0,0" Text="{Binding Path=ill,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="181,380,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,304,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

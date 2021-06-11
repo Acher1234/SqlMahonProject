@@ -11,17 +11,17 @@
     <Grid>
 
         <DataGrid Name="dataGrid" Margin="241,10,0,0"/>
-        <Label Content="Country" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top"/>
-        <Label Content="Vaccination Rate" HorizontalAlignment="Left" Margin="21,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="44"/>
-        <Label Content="Contamination Rate" HorizontalAlignment="Left" Margin="25,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
-        <Label Content="Motality Rate" HorizontalAlignment="Left" Margin="25,205,0,0" VerticalAlignment="Top"/>
-        <Label Content="Population" HorizontalAlignment="Left" Margin="25,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.229,1.504"/>
-        <Button Click="addCountry" Content="Button" HorizontalAlignment="Left" Margin="102,295,0,0" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding Path=country,Mode=TwoWay}" HorizontalAlignment="Left" Margin="102,67,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="102,110,0,0" Text="{Binding Path=vaccin,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Country" HorizontalAlignment="Left" Margin="15,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="Vaccination Rate" HorizontalAlignment="Left" Margin="15,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="44"/>
+        <Label Content="Contamination Rate" HorizontalAlignment="Left" Margin="15,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
+        <Label Content="Motality Rate" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center"/>
+        <Label Content="Population" HorizontalAlignment="Left" Margin="15,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.229,1.504"/>
+        <Button Click="addCountry" Content="Add" HorizontalAlignment="Left" Margin="102,295,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Path=country,Mode=TwoWay}" HorizontalAlignment="Left" Margin="145,67,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox HorizontalAlignment="Left" Margin="145,110,0,0" Text="{Binding Path=vaccin,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
         <TextBox HorizontalAlignment="Left" Margin="145,168,0,0" Text="{Binding Path=contaminationRate,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-        <TextBox HorizontalAlignment="Left" Margin="131,218,0,0" Text="{Binding Path=mortality,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-        <TextBox HorizontalAlignment="Left" Margin="131,258,0,0" Text="{Binding Path=population,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
+        <TextBox HorizontalAlignment="Left" Margin="145,218,0,0" Text="{Binding Path=mortality,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
+        <TextBox HorizontalAlignment="Left" Margin="145,258,0,0" Text="{Binding Path=population,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
         <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 

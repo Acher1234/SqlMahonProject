@@ -11,15 +11,15 @@
     <Grid>
 
         <DataGrid Name="dataGrid" Margin="241,10,0,0"/>
-        <Label Content="id" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top"/>
-        <Label Content="Country" HorizontalAlignment="Left" Margin="21,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="76"/>
-        <Label Content="Number Days" HorizontalAlignment="Left" Margin="25,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
-        <Button Click="addStayed" Content="Button"  HorizontalAlignment="Left" Margin="102,205,0,0" VerticalAlignment="Top"/>
+        <Label Content="id" HorizontalAlignment="Left" Margin="11,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="Country" HorizontalAlignment="Left" Margin="11,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.125,0.425" Width="76"/>
+        <Label Content="Number Days" HorizontalAlignment="Left" Margin="11,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.273,5.471"/>
+        <Button Click="addStayed" Content="Add"  HorizontalAlignment="Left" Margin="102,205,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="idbox" HorizontalAlignment="Left" Margin="102,67,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="cbox" HorizontalAlignment="Left" Margin="102,128,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="121,168,0,0" Text="{Binding Path=number,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="105,168,0,0" Text="{Binding Path=number,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="172,380,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="42,320,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
