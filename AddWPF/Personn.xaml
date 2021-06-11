@@ -6,25 +6,25 @@
         xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
         mc:Ignorable="d"
         Title="Personn" Height="450" Width="800">
-    <Grid>
-        <ComboBox Name="CBIDHotel"  HorizontalAlignment="Left" Margin="86,32,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="CBIDRoom"  HorizontalAlignment="Left" Margin="77,104,0,0" VerticalAlignment="Top" Width="120" />
-        <DataGrid Name="dataGrid" Margin="241,10,0,0"/>
-        <TextBox HorizontalAlignment="Left" Margin="73,175,0,0" Text="{Binding Path=id,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="26,389,0,0" VerticalAlignment="Top" Click="AddpersonsSql"/>
-        <TextBox HorizontalAlignment="Left" Margin="73,222,0,0" Text="{Binding Age, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="73,281,0,0" Text="{Binding Nationality, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <DatePicker SelectedDate="{Binding dateentry}" HorizontalAlignment="Left" Margin="82,360,0,0" VerticalAlignment="Top"/>
-        <DatePicker SelectedDate="{Binding dateexit}" HorizontalAlignment="Left" Margin="82,317,0,0" VerticalAlignment="Top"/>
-        <Label Content="ID" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top"/>
-        <Label Content="Age" HorizontalAlignment="Left" Margin="5,217,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.164,0.053"/>
-        <Label Content="Nationlaity&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,270,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.164,0.053"/>
-        <Label Content="Hotel" HorizontalAlignment="Left" Margin="40,36,0,0" VerticalAlignment="Top"/>
-        <Label Content="Rooms" HorizontalAlignment="Left" Margin="13,100,0,0" VerticalAlignment="Top"/>
-        <Label Content="entry" HorizontalAlignment="Left" Margin="22,358,0,0" VerticalAlignment="Top"/>
-        <Label Content="exit" HorizontalAlignment="Left" Margin="26,317,0,0" VerticalAlignment="Top"/>
-        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="77,393,0,0" VerticalAlignment="Top" Width="120"/>
+	<Grid>
+		<ComboBox Name="CBIDHotel"  HorizontalAlignment="Left" Margin="73,30,0,0" VerticalAlignment="Top" Width="120"/>
+		<ComboBox Name="CBIDRoom"  HorizontalAlignment="Left" Margin="73,70,0,0" VerticalAlignment="Top" Width="120" />
+		<DataGrid Name="dataGrid" Margin="241,10,0,0"/>
+		<TextBox HorizontalAlignment="Left" Margin="73,110,0,0" Text="{Binding Path=id,Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<Button Content="Button" HorizontalAlignment="Left" Margin="100,313,0,0" VerticalAlignment="Top" Click="AddpersonsSql"/>
+		<TextBox HorizontalAlignment="Left" Margin="73,150,0,0" Text="{Binding Age, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<TextBox HorizontalAlignment="Left" Margin="73,190,0,0" Text="{Binding Nationality, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+		<DatePicker SelectedDate="{Binding dateentry}" HorizontalAlignment="Left" Margin="82,266,0,0" VerticalAlignment="Top"/>
+		<DatePicker SelectedDate="{Binding dateexit}" HorizontalAlignment="Left" Margin="82,231,0,0" VerticalAlignment="Top"/>
+		<Label Content="ID" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top"/>
+		<Label Content="Age" HorizontalAlignment="Left" Margin="5,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.164,0.053"/>
+		<Label Content="Nationlaity&#xD;&#xA;" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.164,0.053" Margin="0,180,0,0"/>
+		<Label Content="Hotel" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+		<Label Content="Rooms" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+		<Label Content="entry" HorizontalAlignment="Left" Margin="34,262,0,0" VerticalAlignment="Top"/>
+		<Label Content="exit" HorizontalAlignment="Left" Margin="34,233,0,0" VerticalAlignment="Top"/>
+		<Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="132,394,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="45,353,0,0" VerticalAlignment="Top" Width="120"/>
 
-    </Grid>
+	</Grid>
 </Window>

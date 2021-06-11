@@ -10,7 +10,7 @@
         <DataGrid Name="dataGrid" Margin="400,0,0,0"/>
         <ComboBox Name="idPersonne" HorizontalAlignment="Left" Margin="218,59,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="idPersonne" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top"/>
-        <Button Click="AddreceiveSql" Content="Button" HorizontalAlignment="Left" Margin="218,136,0,0" VerticalAlignment="Top"/>
+        <Button Click="AddreceiveSql" Content="Add" HorizontalAlignment="Left" Margin="218,136,0,0" VerticalAlignment="Top"/>
         <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 

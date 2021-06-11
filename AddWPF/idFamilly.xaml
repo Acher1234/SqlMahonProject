@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid Name="dataGrid" Margin="400,0,0,0"/>
         <Button Content="createIdFamily" HorizontalAlignment="Left" Margin="184,79,0,0" VerticalAlignment="Top" Click="addIdFamily"/>
-        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+		<Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>

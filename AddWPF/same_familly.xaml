@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:SqlMahonProject.AddWPF"
         mc:Ignorable="d"
         Title="same_familly" Height="450" Width="800">
-    <Grid>
-        <DataGrid Name="dataGrid" Margin="400,0,0,0"/>
-        <ComboBox Name="idFamilly" HorizontalAlignment="Left" Margin="103,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.402,0.53"/>
-        <ComboBox Name="idPersonn" HorizontalAlignment="Left" Margin="103,134,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="id Familly"  HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top"/>
-        <Label Content="id Personne" HorizontalAlignment="Left" Margin="38,130,0,0" VerticalAlignment="Top"/>
-        <Button Click="Addsame_familly_Sql" Content="Button" HorizontalAlignment="Left" Margin="163,202,0,0" VerticalAlignment="Top"/>
-        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
+	<Grid>
+		<DataGrid Name="dataGrid" Margin="400,0,0,0"/>
+		<ComboBox Name="idFamilly" HorizontalAlignment="Left" Margin="131,62,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.402,0.53"/>
+		<ComboBox Name="idPersonn" HorizontalAlignment="Left" Margin="131,134,0,0" VerticalAlignment="Top" Width="120"/>
+		<Label Content="id Familly"  HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top"/>
+		<Label Content="id Personne" HorizontalAlignment="Left" Margin="38,130,0,0" VerticalAlignment="Top"/>
+		<Button Click="Addsame_familly_Sql" Content="Add" HorizontalAlignment="Left" Margin="163,202,0,0" VerticalAlignment="Top"/>
+		<Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+		<ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 
-    </Grid>
+	</Grid>
 </Window>

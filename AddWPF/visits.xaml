@@ -13,7 +13,7 @@
         <DatePicker DisplayDate="{Binding Path=date,Mode=TwoWay}" Name="dateOfVisits" HorizontalAlignment="Left" Margin="77,28,0,0" VerticalAlignment="Top"/>
         <Label Content="visitor id" HorizontalAlignment="Left" Margin="17,112,0,0" VerticalAlignment="Top"/>
         <Label Content="person id" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top"/>
-        <Button Click="Save" Content="Button" HorizontalAlignment="Left" Margin="254,216,0,0" VerticalAlignment="Top"/>
+        <Button Click="Save" Content="save" HorizontalAlignment="Left" Margin="254,216,0,0" VerticalAlignment="Top"/>
         <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 

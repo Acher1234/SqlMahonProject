@@ -12,12 +12,12 @@
         <ComboBox  Name="room1" HorizontalAlignment="Left" Margin="204,110,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="room2" HorizontalAlignment="Left" Margin="204,169,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox Name="room3" HorizontalAlignment="Left" Margin="204,233,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Click="AddreceiveSql" Content="Button" HorizontalAlignment="Left" Margin="169,300,0,0" VerticalAlignment="Top"/>
+        <Button Click="AddreceiveSql" Content="Add" HorizontalAlignment="Left" Margin="169,300,0,0" VerticalAlignment="Top"/>
         <Label Content="idhotel" HorizontalAlignment="Left" Margin="117,58,0,0" VerticalAlignment="Top"/>
         <Label Content="room1" HorizontalAlignment="Left" Margin="117,114,0,0" VerticalAlignment="Top"/>
         <Label Content="room2" HorizontalAlignment="Left" Margin="117,167,0,0" VerticalAlignment="Top"/>
         <Label Content="room3" HorizontalAlignment="Left" Margin="117,233,0,0" VerticalAlignment="Top"/>
-        <Button Click="remove" Content="Button" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
+		<Button Click="remove" Content="Remove" HorizontalAlignment="Left" Margin="220,380,0,0" VerticalAlignment="Top"/>
         <ComboBox Name="removeID"  HorizontalAlignment="Left" Margin="72,380,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
