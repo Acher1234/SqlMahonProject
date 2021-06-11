@@ -138,5 +138,12 @@ namespace SqlMahonProject
         {
             
         }
+
+        private void seeRequestWindow(object sender, RoutedEventArgs e)
+        {
+            a = new seeRequest();
+            a.Show();
+            a.Closed += WidowsClosed;
+        }
     }
 }
