@@ -26,6 +26,7 @@ namespace SqlMahonProject.AddWPF
             this.DataContext = this;
             countryBox.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
             removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
+            FillDataGrid();
         }
 
         private void remove(object sender, RoutedEventArgs e)
@@ -38,7 +39,7 @@ namespace SqlMahonProject.AddWPF
             {
                 try
                 {
-                    UtilsFunction.RemoveFunction.removecountry(removeID.SelectedItem.ToString());
+                    UtilsFunction.RemoveFunction.removecountryColor(removeID.SelectedItem.ToString());
                     FillDataGrid();
                     countryBox.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();
                     removeID.ItemsSource = UtilsFunction.GetRemoveId.GetcountryID();

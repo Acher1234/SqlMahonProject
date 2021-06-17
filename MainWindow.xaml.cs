@@ -66,6 +66,12 @@ namespace SqlMahonProject
                 a.Show();
                 a.Closed += WidowsClosed;
             }
+            else if (ListBoxAddItem.SelectedItem.ToString() == "links")
+            {
+                a = new AddWPF.Links();
+                a.Show();
+                a.Closed += WidowsClosed;
+            }
             else if (ListBoxAddItem.SelectedItem.ToString() == "stayed in foreign countrey")
             {
                 a = new AddWPF.Stayed_In_Foreign_Country();
