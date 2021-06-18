@@ -57,7 +57,7 @@ namespace SqlMahonProject
             dicttoid.Add("number of average complain by hotel in %", i);
             idtocomand.Add(i++, "SELECT Room.idHotel,CEILING((COUNT(Complaint)/COUNT(Persons.ID)*100)) FROM Persons LEFT JOIN Complaint ON Persons.ID = Complaint.ClientID JOIN Room ON Persons.Rooms = Room.NumberRoom AND Persons.idHotel = Room.idHotel GROUP BY Room.idHotel");
             dicttoid.Add("number of complain by room", i);
-            idtocomand.Add(i++, "SELECT count(DISTINCT Complaint.ClientID),Room.NumberRoom,Room.HotelID from Persons,Complaint,Cleaner,Room WHERE Persons.ID = Complaint.ClientID and Persons.Rooms = Room.NumberRoom and Cleaner.Id = Room.CleanerId and Persons.idHotel=Room.idHotel GROUP by Room.NumberRoom");
+            idtocomand.Add(i++, "SELECT count(DISTINCT Complaint.ClientID),Room.NumberRoom,Room.IDHotel from Persons,Complaint,Cleaner,Room WHERE Persons.ID = Complaint.ClientID and Persons.Rooms = Room.NumberRoom and Cleaner.Id = Room.CleanerId and Persons.idHotel=Room.idHotel GROUP by Room.NumberRoom");
             dicttoid.Add("person of same familly come from red country", i);
             idtocomand.Add(i++, "SELECT previous_illnesses.Illness_name,same_family.idFamilly from previous_illnesses,persons,same_family,stayed_in_foreign_country,color where persons.ID in (SELECT id from same_family)and persons.id = same_family.Id and persons.ID = previous_illnesses.ID and stayed_in_foreign_country.ID = persons.id and stayed_in_foreign_country.Country = color.Country and color.Dangerous = 'red' order by same_family.idFamilly");
             dicttoid.Add("person who come from france and seek", i);
